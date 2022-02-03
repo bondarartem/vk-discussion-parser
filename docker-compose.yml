@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - 3307:3306
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - db
+
+  bot:
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3307
+    image: bondarartem/tg-vk-parser:latest
+    volumes:
+      - ./src/:/app
+    depends_on:
+      - mysql
+    networks:
+      - db
+
+networks:
+  db:
+    driver: bridge
