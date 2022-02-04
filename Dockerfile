@@ -1,9 +1,6 @@
-FROM node:latest as build
+FROM node:8-alpine
 WORKDIR /app
-COPY ./src/package.json ./src/index.js ./
+COPY ./src/package.json  ./
 RUN npm install
-
-FROM node:alpine
-COPY --from=build /app /
-EXPOSE 3000
+COPY ./src ./
 CMD ["npm", "start"]
