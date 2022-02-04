@@ -17,7 +17,7 @@ services:
     environment:
       - DB_HOST=mysql
       - DB_PORT=3307
-    image: docker
+    image: bondarartem/tg-vk-parser:latest
     volumes:
       - ./src/:/app
     networks:
