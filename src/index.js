@@ -57,8 +57,9 @@ const checkNewComments = async () => {
             const sendMessages = async (result) => {
                 for (const comment of result) {
                     if (comment.photos) {
-                        await bot.sendMessage('@rooms_lispb', comment.comment);
-                        await bot.sendMediaGroup('@rooms_lispb', comment.photos);
+                        bot.sendMessage('@rooms_lispb', comment.comment).then(async() => {
+                            await bot.sendMediaGroup('@rooms_lispb', comment.photos);
+                        });
                         await topics.updateOrCreate({
                             id: topicInfo.topic_id,
                             group_id: topicInfo.group_id,
