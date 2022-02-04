@@ -1,7 +1,7 @@
 version: '3'
 services:
   mysql:
-    image: mysql:5.7@sha256:22982f2d231478b7354eafb847e8530c13a4b4cba4f01d5a183ce23ea39dc992
+    image: mysql:5.7
     restart: unless-stopped
     env_file: ./.env
     ports:
@@ -12,14 +12,15 @@ services:
       - db
 
   bot:
+    build: .
+    command: npm start
     restart: unless-stopped
     env_file: ./.env
     environment:
       - DB_HOST=mysql
       - DB_PORT=3307
-    image: docker
     volumes:
-      - ./src/:/app
+      - ./src:/app
     networks:
       - db
 
