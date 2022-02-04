@@ -1,6 +1,10 @@
-FROM node:8-alpine
-WORKDIR /app
-COPY ./src/package.json  ./
+FROM node:10-alpine
+
+RUN mkdir -p /app/node_modules
+
+COPY src/package.json ./
 RUN npm install
-COPY ./src ./
-CMD ["npm", "start"]
+
+COPY ./src .
+
+CMD ["node", "index.js"]

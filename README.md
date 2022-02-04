@@ -2,6 +2,5 @@
 
 ## Запуск
 ```shell script
-mkdir db
 docker-compose up --build -d
 ```

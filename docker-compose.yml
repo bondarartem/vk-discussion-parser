@@ -12,14 +12,12 @@ services:
       - db
 
   bot:
-    build: .
     restart: unless-stopped
     env_file: ./.env
+    image: bondarartem/tg-vk-parser:latest
     environment:
       - DB_HOST=mysql
       - DB_PORT=3307
-    volumes:
-      - ./src:/app
     networks:
       - db
 
