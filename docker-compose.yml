@@ -13,7 +13,6 @@ services:
 
   bot:
     build: .
-    command: npm start
     restart: unless-stopped
     env_file: ./.env
     environment:
