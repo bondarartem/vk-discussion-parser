@@ -1,8 +1,9 @@
-FROM node:alpine as build
+FROM node:latest as build
 WORKDIR /app
-COPY ./src ./
+COPY ./src/package.json ./src/index.js ./
 RUN npm install
 
-FROM gcr.io/distroless/nodejs
-COPY --from=build /app /app
-CMD ['index.js']
+FROM node:alpine
+COPY --from=build /app /
+EXPOSE 3000
+CMD ["npm", "start"]
