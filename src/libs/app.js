@@ -69,13 +69,18 @@ const checkNewComments = async () => {
 
                     }
                     else if (comment.comment) {
-                        await bot.sendMessage('@rooms_lispb', comment.comment, {parse_mode: 'HTML'});
+                        try {
+                            await bot.sendMessage('@rooms_lispb', comment.comment, {parse_mode: 'HTML'});
 
-                        await topics.updateOrCreate({
-                            id: topicInfo.id,
-                            group_id: topicInfo.group_id,
-                            last_comment_id: comment.id
-                        });
+                            await topics.updateOrCreate({
+                                id: topicInfo.id,
+                                group_id: topicInfo.group_id,
+                                last_comment_id: comment.id
+                            });
+                        } catch (e) {
+                            console.log(e);
+                            console.log(comment.photos);
+                        }
                     }
                 }
             }));

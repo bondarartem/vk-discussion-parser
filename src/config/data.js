@@ -1,1 +1,1 @@
-exports.frequencyPolling = 0.1; // in minutes
+exports.frequencyPolling = 1; // in minutes
