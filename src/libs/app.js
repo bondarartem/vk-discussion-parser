@@ -57,30 +57,28 @@ const checkNewComments = async () => {
                         try {
                             await bot.sendMediaGroup('@rooms_lispb', comment.photos, {parse_mode: 'HTML'});
 
-                            await topics.updateOrCreate({
-                                id: topicInfo.id,
-                                group_id: topicInfo.group_id,
-                                last_comment_id: comment.id
-                            });
                         } catch (e) {
                             console.log(e);
                             console.log(comment.photos);
                         }
-
+                        await topics.updateOrCreate({
+                            id: topicInfo.id,
+                            group_id: topicInfo.group_id,
+                            last_comment_id: comment.id
+                        });
                     }
                     else if (comment.comment) {
                         try {
                             await bot.sendMessage('@rooms_lispb', comment.comment, {parse_mode: 'HTML'});
-
-                            await topics.updateOrCreate({
-                                id: topicInfo.id,
-                                group_id: topicInfo.group_id,
-                                last_comment_id: comment.id
-                            });
                         } catch (e) {
                             console.log(e);
-                            console.log(comment.photos);
+                            console.log(comment.comment);
                         }
+                        await topics.updateOrCreate({
+                            id: topicInfo.id,
+                            group_id: topicInfo.group_id,
+                            last_comment_id: comment.id
+                        });
                     }
                 }
             }));
