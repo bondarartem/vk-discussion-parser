@@ -45,7 +45,7 @@ const checkNewComments = async () => {
                                 .map((p, i) => {
                                     return {
                                         type: 'photo',
-                                        caption: i === 0 ? comment.text : '',
+                                        caption: i === 0 ? text : '',
                                         media: p.photo.sizes[p.photo.sizes.length - 1].url,
                                     };
                                 }).slice(0, 10) : []
