@@ -12,6 +12,7 @@ services:
       - db
 
   bot:
+    build: .
     restart: unless-stopped
     env_file: ./.env
     image: bondarartem/tg-vk-parser:latest
@@ -20,6 +21,8 @@ services:
       - DB_PORT=3307
     networks:
       - db
+    depends_on:
+      - mysql
 
 networks:
   db:

@@ -24,6 +24,12 @@ const findOne = async (id) => {
 
 exports.findOne = findOne;
 
+const findAll = async () => {
+    return await Topic.findAll();
+};
+
+exports.findAll = findAll;
+
 const update = async (params) => {
     const id = params.id;
 
@@ -49,7 +55,8 @@ exports.updateOrCreate = async (params) => {
 
     const t = await Topic.findByPk(params.id);
     if (t) {
-        if (t.getDataValue('last_comment_id') != params.last_comment_id)
+        if (t.getDataValue('last_comment_id') != params.last_comment_id
+            || t.getDataValue('name') != params.name)
             return await update(params);
 
         return true;

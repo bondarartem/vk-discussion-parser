@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         last_comment_id: {
             type: Sequelize.BIGINT
+        },
+        name: {
+            type: Sequelize.STRING
         }
     });
 
