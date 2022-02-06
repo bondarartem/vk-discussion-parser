@@ -1,5 +1,9 @@
 const db = require('./models');
 
+const TelegramBot = require('node-telegram-bot-api');
+
+global.bot = new TelegramBot(process.env.TELEGRAM_TOKEN, {polling: true});
+
 const app = require('./libs/app');
 const sync = () => {
     db.sequelize.sync()
